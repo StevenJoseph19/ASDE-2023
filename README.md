@@ -1,3 +1,3 @@
 # ASDE-2023
 
-Repository for Sapient ASDe 2023 Training.
+Repository for Sapient ASDE Training.
