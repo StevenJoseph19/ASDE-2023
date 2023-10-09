@@ -1,0 +1,70 @@
+Character
+=============
+SELECT 'Art'::CHAR(7) AS "Padded";
+SELECT 'Artwork'::CHAR(7) AS "NotPadded";
+SELECT CAST('Art' AS CHAR(7)) AS "Padded";
+SELECT CAST('Artwork' AS CHAR(7)) AS "NotPadded";
+SELECT 'Gill Bates'::VARCHAR(14) AS "SmallerNamesAreNotPadded";
+SELECT 'Zark Muckerberg'::VARCHAR(14) AS "LongerNameClipped";
+SELECT 'The quick brown fox jumps over the lazy dog.'::VARCHAR AS "UsingVARCHAR";
+SELECT 'The quick brown fox jumps over the lazy dog.'::TEXT AS "UsingTEXT";
+
+Numeric
+==================
+SELECT 9.99::NUMERIC(8,3) AS "NumericValue";
+SELECT 999989999999.889999::NUMERIC AS "NumericValue";
+SELECT 99998.889999::NUMERIC(8,3) AS "NumericValue";
+SELECT 'NaN'::NUMERIC AS "Not-a-Number";
+SELECT 99998999.889999::REAL AS "RealValue";
+SELECT 99998999.889999::DOUBLE PRECISION AS "DoublePrecisionValue";
+SELECT '$100,000.00'::MONEY AS "CTC";
+
+Boolean
+================
+SELECT 1::BOOLEAN AS "TrueValue", 0::BOOLEAN AS "FalseValue",NULL::BOOL  AS "Unknown";
+
+Date/Time
+=================
+SELECT '2020, 4 July'::DATE AS "US Independence Day";
+SELECT '20200407'::DATE AS " US Independence Day";
+SELECT '12:00:00.12345678'::TIME(2) AS "Noon with 2 micro-second precision";
+SELECT '00:00:00 IST'::TIME WITH TIME ZONE AS "Midnight as per Indian Standard Time";
+SELECT '2020, 4 July 12:00:00'::TIMESTAMP AS "US Independence Day NOON";
+SELECT '2020, 4 July 12:00:00 EST'::TIMESTAMP WITH TIME ZONE AS "US Independence Day NOON with Time zone";
+SELECT '1 Y 5 Mon 2 H 5 M'::INTERVAL  AS "1Year2Months2Hours5Minutes";
+SELECT '11 hours, 30 minutes, 40 seconds ago'::INTERVAL  AS "11 and a half hours, 40 seconds ago";
+
+Array
+===================
+select '{ "Certification practice exams", "Interactive courses", "Technical Projects" }'::VARCHAR[] as "ACME Learning Premium Package";
+SELECT ARRAY[55,66,77]::INTEGER[] AS "Integer Array";
+SELECT (ARRAY[55,66,77]::INTEGER[])[1] AS "First Array Element";
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

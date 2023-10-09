@@ -1,0 +1,144 @@
+Create Table
+============================
+CREATE TABLE emp_data (
+name text,
+age integer,
+designation text,
+salary integer
+);
+
+\dt
+
+Delete an existing table
+===========================
+DROP TABLE emp_data;
+
+\dt
+
+INSERT Command
+==============================
+INSERT INTO emp_data(name, age, designation,salary  ) VALUES ('Jim', 42, 'Program Manager', 430000), ('Rakesh', 19, 'Project Manager', 3120000), ('Anita', 22, 'Sales Manager', 1320000);
+
+
+UPDATE Command
+=============================
+UPDATE emp_data SET age = 32 WHERE salary  = 430000;
+
+
+DELETE Command
+============================
+DELETE FROM emp_data;
+DELETE FROM emp_data WHERE age< 25.00 
+
+
+Constraint
+================================
+
+Create the orders table
+============================
+
+CREATE TABLE orders(
+ord_no integer PRIMARY KEY,
+ord_date date NOT NULL,
+cus_name character(25) NOT NULL,
+item_code integer NOT NULL,
+item_grade character(1)NOT NULL DEFAULT 'A',
+vendor_code numeric NOT NULL,
+city character(15),
+ord_qty numeric DEFAULT 1 CHECK(ord_qty>0 AND ord_qty<50),
+ord_amount numeric,
+advance_amount numeric DEFAULT 2000,
+date_to_disb date NOT NULL CHECK(date_to_disb>ord_date)
+);
+
+
+Describe a table's structure
+======================================
+ \d orders
+
+Add a column
+===========================
+ALTER TABLE orders ADD COLUMN 
+vendor_name varchar(25);
+
+Drop a column
+=============================
+ALTER TABLE orders DROP COLUMN vendor_name;
+
+Change column type
+===============================
+ALTER TABLE orders 
+ALTER COLUMN cus_name TYPE varchar(25),
+ALTER COLUMN city TYPE varchar(25);
+
+Rename a table
+================
+
+ALTER TABLE orders RENAME TO neworders;
+
+Add NOT NULL constraint
+=========================
+
+ALTER TABLE neworders ALTER COLUMN city SET NOT NULL;
+
+Remove NOT NULL constraint
+==================================
+
+ALTER TABLE neworders ALTER COLUMN city DROP NOT NULL;
+
+Add CHECK constraint
+=======================================
+
+
+ALTER TABLE neworders ADD CONSTRAINT chkamount CHECK (ord_amount>=10000);
+
+Remove CHECK constraint
+===================================
+
+
+ALTER TABLE neworders DROP CONSTRAINT chkamount;
+
+Remove CHECK constraint only from parent table
+================================================
+
+ALTER TABLE ONLY neworders DROP CONSTRAINT chkamount;
+
+Add UNIQUE constraint
+====================================================
+
+ALTER TABLE neworders 
+ADD CONSTRAINT item_vendor_ukey 
+UNIQUE (item_code,vendor_code);
+
+Remove UNIQUE constraint
+====================================================
+
+ALTER TABLE neworders 
+DROP CONSTRAINT item_vendor_ukey;
+
+Add PRIMARY KEY constraint
+=====================================================
+
+ALTER TABLE neworders ADD PRIMARY KEY (ord_no);
+
+Add FOREIGN KEY constraint
+=====================================================
+
+ALTER TABLE neworders 
+ADD CONSTRAINT vend_code_fkey 
+FOREIGN KEY (vendor_code) REFERENCES vendors;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
