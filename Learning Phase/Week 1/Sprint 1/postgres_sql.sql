@@ -1,3 +1,6 @@
+CREATE  DATABASE employee_mgmt;
+
+
 CREATE TABLE EMPLOYEE
 (
     ID SERIAL,
