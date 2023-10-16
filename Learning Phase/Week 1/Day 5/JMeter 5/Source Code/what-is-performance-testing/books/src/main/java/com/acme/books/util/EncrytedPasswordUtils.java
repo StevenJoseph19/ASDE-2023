@@ -1,0 +1,122 @@
+package com.acme.books.util;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+public class EncrytedPasswordUtils {
+    // Encryte Password with BCryptPasswordEncoder
+    public static String encryptPassword(String password) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        return encoder.encode(password);
+    }
+    
+    private static String[] names = {
+            "Murtaza Colon",
+            "Lily-Rose Witt",
+            "Honor Sellers",
+            "Esa Rees",
+            "Harold Gregory",
+            "Kaleb Atkinson",
+            "Brennan Currie",
+            "Fenton Bravo",
+            "Portia Crane",
+            "Anais Christian",
+            "Phillipa Faulkner",
+            "Mahir Cannon",
+            "Cara Key",
+            "Thea Walsh",
+            "Tiegan Bush",
+            "Humaira Hess",
+            "Reis Sparks",
+            "Trystan Clay",
+            "Jodi Hensley",
+            "Arjun Weir",
+            "Sohail Molloy",
+            "Kallum Prince",
+            "Lucien Roth",
+            "Mathew Swan",
+            "Rodrigo Barton",
+            "Callam Sharpe",
+            "Theo Malone",
+            "Evalyn Dillon",
+            "Marley Daly",
+            "Reeva Lacey",
+            "Demi-Leigh Montes",
+            "Mustafa Findlay",
+            "Egon Quinn",
+            "Lacy Ball",
+            "Zayden Knott",
+            "Flynn Sykes",
+            "Phyllis Mcdonnell",
+            "Korban Hodgson",
+            "Bob Delacruz",
+            "Olivier Ibarra",
+            "Nasir Baldwin",
+            "Stuart Pitts",
+            "Jay-Jay Trujillo",
+            "Jayde Cantu",
+            "Kiyan Duran",
+            "Lillie-Mae Keeling",
+            "Luc Cobb",
+            "Ellena Harper",
+            "Augustus Galindo",
+            "Levi Krueger",
+            "Mildred Sutherland",
+            "Robbie Wheatley",
+            "Dianne Charlton",
+            "Greyson Bateman",
+            "Jayden Forbes",
+            "Aahil Vincent",
+            "Chantelle Gamble",
+            "Amandeep Weston",
+            "Star Fields",
+            "Darrell Mcloughlin",
+            "Shamima Leonard",
+            "Sabrina Higgins",
+            "Beck Joyner",
+            "Marcus Thornton",
+            "Sharon Maxwell",
+            "Ellen Rivas",
+            "Alaw Washington",
+            "Lisa Macias",
+            "Ruqayyah Carson",
+            "Alima House",
+            "Yvie Garcia",
+            "Stewart Rosario",
+            "Imogen Palacios",
+            "Cerys Pearce",
+            "Zach Aguilar",
+            "Imaad Bloom",
+            "Lacey-Mae Andrews",
+            "Reilly Burke",
+            "Ali Bowen",
+            "Shiv Osborne",
+            "June Mccoy",
+            "Ozan Valencia",
+            "August Allison",
+            "Inaaya Lees",
+            "Deborah Beaumont",
+            "Ayrton Bass",
+            "Yvette Cottrell",
+            "Koa Rios",
+            "Cari Donaldson",
+            "Tolga Forrest",
+            "Farhana Kaufman",
+            "Ariadne Hamer",
+            "Hadassah Pike",
+            "Jorden Wallace",
+            "Gregory Willis",
+            "Vincent Trejo",
+            "Kenzo Gunn",
+            "Musab Farley",
+            "Poppy-Mae Carter",
+            "Patsy Sweeney"
+    };
+
+    public static void main(String[] args) {
+        for(int i = 2; i <= 100; i++) {
+            String[] n = names[i-1].split(" ");
+            String user = "user" + i;
+            System.out.format("INSERT INTO users VALUES (%d, '%s', '%s', '%s', '%s');\n", i, n[0], n[1], user, encryptPassword(user));
+        }
+    }
+}

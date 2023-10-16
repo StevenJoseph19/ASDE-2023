@@ -1,0 +1,17 @@
+com\acme\books\repository\UserRepository.class
+com\acme\books\controller\dto\ReviewDTO.class
+com\acme\books\BooksApplication$ApplicationSecurity.class
+com\acme\books\model\Category.class
+com\acme\books\controller\MainController.class
+com\acme\books\model\Review.class
+com\acme\books\service\UserDetailsServiceImpl.class
+com\acme\books\model\Book.class
+com\acme\books\repository\ReviewRepository.class
+com\acme\books\model\CustomUser.class
+com\acme\books\controller\CategoryControllerAdvice.class
+com\acme\books\util\EncrytedPasswordUtils.class
+com\acme\books\repository\BookRepository.class
+com\acme\books\service\BookServiceImpl.class
+com\acme\books\BooksApplication.class
+com\acme\books\repository\CategoryRepository.class
+com\acme\books\model\Users.class

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      th:replace="~{fragments/layout :: layout (~{::body},${categories}, ${true})}">
+
+<body>
+
+<!-- Start Product Details -->
+<div class="container mt-3 pb-4">
+    <div class="product-quick-view">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="quick-view-carousel-details">
+                    <img class="content-image img-fluid d-block mx-auto" th:src="${'/images/' + book.image}" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="quick-view-product">
+                    <div class="top">
+                        <h3 class="head" th:text="${book.title}">Site Runner</h3>
+                        <div class="author" th:text="${book.author}"></div>
+                        <div class="price d-flex align-items-center"><span class="ml-10" th:text="${#numbers.formatCurrency(book.price)}">$19.99</span></div>
+                        <div><input id="main-rating" value="4.3" th:value="${#numbers.formatDecimal(book.averageReview, 0, 1)}" /></div>
+                        <div class="available">Availibility: <b>In Stock</b></div>
+                    </div>
+                    <div class="middle">
+                        <p class="content">Lorem ipsum dolor sit amet, duo appareat adipiscing ei, cu qui magna accusam. An sed scaevola phaedrum. Cu ubique fastidii euripidis nec, ipsum sonet malorum at vim, commune periculis ea mei. Pri ut aperiri scaevola definitiones, nam ad molestie expetendis, libris tractatos ei mea.</p>
+                    </div>
+                    <div class="mt-4">
+                        <div class="d-flex mt-15">
+                            <a href="#" class="btn btn-dark btn-pill"><span>Add to Cart</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Description Section -->
+<div class="container card mt-4">
+    <div class="card-body">
+        <h4 class="card-title">Description</h4>
+        <p class="card-text" th:utext="${book.description}">
+            Every avid independent filmmaker has <b>Bold</b> about making that <i>Italic</i> interest documentary, or short film to show off their creative prowess. Many have great ideas and want to “wow” the<sup>Superscript</sup> scene, or video renters with their big project.  But once you have the<sub>Subscript</sub> “in the can” (no easy feat), how do you move from a <del>Strike</del> through of master DVDs with the <u>“Underline”</u> marked hand-written title inside a secondhand CD case, to a pile of cardboard boxes full of shiny new, retail-ready DVDs, with UPC barcodes and polywrap sitting on your doorstep?  You need to create eye-popping artwork and have your project replicated. Using a reputable full service DVD Replication company like PacificDisc, Inc. to partner with is certainly a helpful option to ensure a professional end result, but to help with your DVD replication project, here are 4 easy steps to follow for good DVD replication results:
+        </p>
+    </div>
+</div>
+<!-- / Description Section -->
+
+<!-- Details Section -->
+<div class="container card mt-4">
+    <div class="card-body">
+        <h4 class="card-title">Book Details</h4>
+        <div class="col-md-12 pt-2">
+            <table class="table table-bordered table-responsive-md">
+                <tbody>
+                <tr>
+                    <td><b>Publisher</b></td>
+                    <td th:text="${book.publisher}">Pluralsight Books</td>
+                </tr>
+                <tr>
+                    <td><b>Pages</b></td>
+                    <td th:text="${book.pages}">100</td>
+                </tr>
+                <tr>
+                    <td><b>ISBN-10</b></td>
+                    <td th:text="${book.isbn10}">1234567890</td>
+                </tr>
+                <tr>
+                    <td><b>ISBN-13</b></td>
+                    <td th:text="${book.isbn13}">1234567890123</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- / Details Section -->
+
+<!-- Reviews Section -->
+<div class="container card mt-4">
+    <div class="card-body">
+        <h4 class="card-title">Reviews</h4>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-lg-6" th:class="${#authorization.expression('isAuthenticated()') ? 'col-lg-6' : 'col-lg-12'}">
+                    <div class="mt-3" th:if="${page.content != null and !page.content.empty}">
+                        <div class="single-comment" th:each="review : ${page.content}">
+                            <div class="user-details d-flex align-items-center">
+                                <img th:src="@{/images/user.png}" src="../../static/images/user.png" class="img-fluid" alt="">
+                                <div class="user-name">
+                                    <h5 th:text="${review.user.firstName + ' ' + review.user.lastName}">Blake Ruiz</h5>
+                                </div>
+                            </div>
+                            <div class="title" th:text="${review.title}">Title</div>
+                            <input class="review-rating" th:value="${#numbers.formatDecimal(review.rating, 0, 1)}" value="4.3" />
+                            <div class="date" th:text="${#dates.format(review.registered, 'MMMM dd, yyyy')}">June 16, 2017</div>
+                            <p class="user-comment" th:text="${review.review}">
+                                Acres of Diamonds… you’ve read the famous story, or at least had it related to you. A farmer hears tales of diamonds and begins dreaming of vast riches. He sells his farm and hikes off over the horizon, never to be heard from again.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mt-3" th:if="${page.content != null and page.content.empty}">
+                        No reviews yet
+                    </div>
+                </div>
+                <div class="col-lg-6" sec:authorize="isAuthenticated()">
+                    <div class="mt-3 px-2">
+                        <h5><a name="reviews"></a>Add a Review</h5>
+                        <form th:action="@{__${#httpServletRequest.requestURI}__/review}" th:object="${review}" method="post" class="needs-validation">
+                            <div class="form-group">
+                                <input type="text" id="rating" name="rating" th:value="${review.rating}" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <input type="text" class="form-control" id="title" name="title" placeholder="Your review's itle" th:value="${review.title}" th:errorclass="is-invalid" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="review">Review</label>
+                                <textarea class="form-control" id="review" name="review" rows="5" placeholder="Your review" th:text="${review.review}" th:errorclass="is-invalid" required></textarea>
+                            </div>
+                            <input class="btn btn-dark btn-pill" type="submit" value="Submit">
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row" th:if="${page.totalPages > 1}">
+                <!-- Start Filter Bar -->
+                <div class="col-xl-12 col-lg-11 col-md-10">
+                    <div class="filter-bar d-flex flex-wrap align-items-center">
+                        <div class="pagination mr-auto ml-auto">
+                            <a th:if="${page.hasPrevious()}" th:href="@{__${#httpServletRequest.requestURI}__(page=${page.number-1},size=${page.size})}" class="prev-arrow">Prev</a>
+                            <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
+                                <span th:if="${page.number == i}" class="active">[[${i}+1]]</span>
+                                <a th:unless="${page.number == i}" th:href="@{__${#httpServletRequest.requestURI}__(page=${i},size=${page.size})}">[[${i}+1]]</a>
+                            </th:block>
+                            <a th:if="${page.hasNext()}" th:href="@{__${#httpServletRequest.requestURI}__(page=${page.number+1},size=${page.size})}" class="next-arrow">Next</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Filter Bar -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- / Reviews Section -->
+
+<div class="container mt-4">&nbsp;</div>
+
+</body>
+
+</html>

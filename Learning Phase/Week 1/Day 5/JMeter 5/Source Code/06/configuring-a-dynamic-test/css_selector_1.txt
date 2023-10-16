@@ -1,0 +1,11 @@
+<div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
+                        <div class="content">
+                            <a href="/books/1">
+                                <img class="content-image img-fluid d-block mx-auto" src="/images/20000-lines-of-c.png" alt="">
+                            </a>
+                        </div>
+                        <div class="price">
+                            <h5>20000 Lines of C</h5>
+                            <h3>$19.99</h3>
+                        </div>
+                    </div>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},${categories}, ${false})}">
+
+<body>
+
+<div class="welcome d-flex justify-content-center flex-column">
+    <!-- Inner Wrapper -->
+    <div class="inner-wrapper mt-auto mb-auto container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="welcome-heading display-4 text-dark">Globomantics</h1>
+                <p class="text-dark">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras consequat a dui suscipit porta. In et nunc sed velit efficitur aliquet eget quis velit.</p>
+                <a href="/books" th:href="${'/books/'}" class="btn btn-lg btn-outline-dark btn-pill align-self-center">Browse Catalog</a>
+            </div>
+        </div>
+    </div>
+    <!-- / Inner Wrapper -->
+</div>
+
+<!-- Our Blog Section -->
+<div class="blog section py-4">
+    <h3 class="section-title text-center m-5">Popular Books</h3>
+
+    <div class="container">
+        <div class="py-4">
+            <div class="row">
+                <div class="card-deck">
+                    <div class="col-md-12 col-lg-4" th:each="book : ${books}">
+                        <div class="card mb-4">
+                            <img class="card-img-top" th:src="${'/images/' + book.image}" src="../../static/images/20000-lines-of-c.png" alt="">
+                            <div class="card-body">
+                                <h4 class="card-title" th:text="${book.title}"></h4>
+                                <p class="card-text" th:text="${#strings.abbreviate(book.description, 122)}">He seems sinking under the evidence could not only grieve and a visit. The father is to bless and placed in his length hid...</p>
+                                <a class="btn btn-primary btn-pill" th:href="${'/books/' + book.id}">See More &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- / Our Blog Section -->
+
+</body>
+
+</html>

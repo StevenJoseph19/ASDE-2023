@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body}, ${categories}, ${false})}">
+
+<body>
+
+<div class="container mt-3 mb-4">
+    <div class="row">
+        <div class="col-xl-3 col-lg-4 col-md-5">
+            <div class="sidebar-categories">
+                <div class="head">Browse Categories</div>
+                <ul class="main-categories">
+                    <li class="main-nav-list" th:each="item : ${categories}">
+                        <a th:text="${item.name}" th:href="${'/books/' + (item.id > 0 ? 'category/' + item.id : '')}">All</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="col-xl-9 col-lg-8 col-md-7">
+            <!-- Start Pagination Bar -->
+            <div class="filter-bar d-flex flex-wrap align-items-center" th:if="${page.totalPages > 1}">
+                <div class="pagination mr-auto ml-auto">
+                    <a th:if="${page.hasPrevious()}" th:href="@{__${#httpServletRequest.requestURI}__(page=${page.number-1},size=${page.size})}" class="prev-arrow">Prev</a>
+                    <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
+                        <span th:if="${page.number == i}" class="active">[[${i}+1]]</span>
+                        <a th:unless="${page.number == i}" th:href="@{__${#httpServletRequest.requestURI}__(page=${i},size=${page.size})}">[[${i}+1]]</a>
+                    </th:block>
+                    <a th:if="${page.hasNext()}" th:href="@{__${#httpServletRequest.requestURI}__(page=${page.number+1},size=${page.size})}" class="next-arrow">Next</a>
+                </div>
+            </div>
+            <!-- End Pagination Bar -->
+            <!-- Start Books -->
+            <section class="pb-40">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product" th:each="book : ${page.content}">
+                        <div class="content">
+                            <a th:href="${'/books/' + book.id}">
+                                <img class="content-image img-fluid d-block mx-auto" th:src="${'/images/' + book.image}" alt="">
+                            </a>
+                        </div>
+                        <div class="price">
+                            <h5 th:text="${book.title}">Title</h5>
+                            <h3 th:text="${#numbers.formatCurrency(book.price)}">$150.00</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- End Books -->
+            <!-- Start Pagination Bar -->
+            <div class="filter-bar d-flex flex-wrap align-items-center" th:if="${page.totalPages > 1}">
+                <div class="pagination mr-auto ml-auto">
+                    <a th:if="${page.hasPrevious()}" th:href="@{__${#httpServletRequest.requestURI}__(page=${page.number-1},size=${page.size})}" class="prev-arrow">Prev</a>
+                    <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
+                        <span th:if="${page.number == i}" class="active">[[${i}+1]]</span>
+                        <a th:unless="${page.number == i}" th:href="@{__${#httpServletRequest.requestURI}__(page=${i},size=${page.size})}">[[${i}+1]]</a>
+                    </th:block>
+                    <a th:if="${page.hasNext()}" th:href="@{__${#httpServletRequest.requestURI}__(page=${page.number+1},size=${page.size})}" class="next-arrow">Next</a>
+                </div>
+            </div>
+            <!-- End Pagination Bar -->
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},${categories}, ${false})}">
+
+<body>
+
+<!-- Form Section -->
+<div class="contact py-4">
+    <h3 class="section-title text-center m-5">Login</h3>
+    <div class="container py-4">
+        <div class="row justify-content-md-center px-4">
+            <div class="contact-form col-sm-12 col-md-10 col-lg-7 p-4 mb-4 card">
+                <div th:if="${#request.getParameter('error') == 'true'}" style="color:red;margin:10px 0px;">
+                    Login Failed
+                </div>
+                <form th:action="@{/doLogin}" method="post">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" id="username" class="form-control" name="username" autofocus="autofocus" placeholder="Enter your username" />
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" />
+                            </div>
+                        </div>
+                    </div>
+                    <input class="btn btn-dark btn-pill d-flex ml-auto mr-auto" type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- / Form Section -->
+
+
+
+</body>
+
+</html>
