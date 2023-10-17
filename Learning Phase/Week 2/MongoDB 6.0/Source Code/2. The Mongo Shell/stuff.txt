@@ -1,0 +1,1 @@
+var stuff = function(name){var doc = {Name:name, Created: date(), Type:'r'}; db.foo.svae(doc);}
