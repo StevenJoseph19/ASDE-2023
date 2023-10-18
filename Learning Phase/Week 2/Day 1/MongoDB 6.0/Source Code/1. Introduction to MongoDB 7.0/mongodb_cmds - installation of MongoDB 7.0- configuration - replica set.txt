@@ -1,0 +1,249 @@
+Downloading
+==========================
+
+Visit https://www.mongodb.com/try/download/community
+Run Windows installer.
+
+Install MongoDB Compass (GUI) if desired.
+
+Take note of data and log directories.
+
+Create Data directory
+=========================
+C:\data\db\
+
+Add bin folder to PATH
+=========================
+(On Windows 10) Add C:\Program Files\MongoDB\Server\7.0\bin to PATH Environment Variable.
+
+Start Mongod daemon
+====================
+mongod 
+mongod --help
+
+Terminate Server
+=======================
+CTRL + C
+
+Use an elevated command prompt 
+====================================
+Manually start the MongoDB service
+====================================
+net start mongodb
+
+Check that the MongoDB service is running
+==========================================
+net start  | findstr Mongo
+
+Stop the service
+=======================
+net stop mongodb 
+
+Connect to server using the Mongo shell
+==========================================
+Install mongosh
+=====================
+https://www.mongodb.com/try/download/shell
+
+Extract the files from the downloaded archive
+===================================================
+
+Add the mongosh binary to your PATH environment variable
+=========================================================
+example:
+=============
+F:\InstalledSoftware\mongosh-1.8.0-win32-x64\bin
+
+To confirm that your PATH environment variable is correctly configured to find mongosh, open a command prompt and enter the 
+mongosh --help 
+command. 
+If your PATH is configured correctly, a list of valid commands displays.
+
+Connect to a MongoDB deployment
+==============================================
+Ref: https://www.mongodb.com/docs/mongodb-shell/connect/
+========================================================================
+To connect to a MongoDB deployment running on localhost with default port 27017, run mongosh without any options:
+
+mongosh
+
+This is equivalent to the following command:
+
+mongosh "mongodb://localhost:27017"
+
+Testing the MongoDB installation
+================================
+By default, if you don't specify a database , it will give you the below prompt:
+test>
+
+That's because by default if you did not say which database to connect to, it assumes you're going to some test database. 
+
+Show Databases
+================
+test> show dbs
+admin   40.00 KiB
+config  12.00 KiB
+local   40.00 KiB
+
+Use a different database
+==================================
+test> use foo
+
+foo>
+switched to db foo
+
+foo> db
+foo
+
+Get Help
+=================
+foo> help
+
+  Shell Help:
+
+    use                                        Set current database
+    show                                       'show databases'/'show dbs': Print a list of all available databases.
+
+Configuring a Replica Set
+====================================
+====================================
+
+Create a configuration file
+===================================
+See mongod.conf
+
+Make the database directory
+=============================
+C:\>md \MyData\db
+
+Start mongo daemon with configuration file
+============================================
+C:\>mongod -f C:\MyData\mongod.conf
+
+Configuring a Replica Set
+==============================================
+Run ReplicaSet.bat
+
+Start Mongo Shell
+=============================================
+cd\
+mongosh --port 30000
+test> db.getMongo()
+mongodb://127.0.0.1:30000/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.8.0
+
+Configure Replica Set for 3 members
+==================================================
+Define JavaScript object for configuration
+====================================================
+See demoConfig.txt
+
+Setup demoConfig variable
+
+test> demoConfig
+{
+  _id: 'demo',
+  members: [
+    { _id: 0, host: 'localhost:30000', priority: 10 },
+    { _id: 1, host: 'localhost:40000' },
+    { _id: 2, host: 'localhost:50000', arbiterOnly: true }
+  ]
+}
+
+Initialize Replication
+===============================
+rs.initiate(demoConfig)
+
+Prompt will change. This is the PRIMARY. =>
+demo [direct: primary] test>
+
+Test out the PRIMARY
+===================================
+demo [direct: primary] test> db.foo.insertOne({_id:1, value: 'hello world'})
+{ acknowledged: true, insertedId: 1 }
+demo [direct: primary] test> db.foo.find()
+[ { _id: 1, value: 'hello world' } ]
+
+db.collection.replaceOne can be used to replace an existing record.
+
+Exit the Mongo Shell
+===============================
+demo [direct: primary] test> exit
+C:\>
+
+Test out the SECONDARY
+===================================
+mongosh --port 40000
+
+Prompt changes.
+demo [direct: secondary] test>
+
+Run find cmd
+========================
+db.foo.find()
+MongoServerError: not primary and secondaryOk=false - consider using db.getMongo().setReadPref() or readPreference in the connection string
+
+Allow Read from secondary
+===================================
+demo [direct: secondary] test> db.setSecondaryOk()
+DeprecationWarning: .setSecondaryOk() is deprecated. Use .setReadPref("primaryPreferred") instead
+Setting read preference from "primary" to "primaryPreferred"
+
+Run find cmd again
+========================
+demo [direct: secondary] test> db.foo.find()
+[ { _id: 1, value: 'hello world' } ]
+
+See Failover Happening
+============================
+Kill PRIMARY server
+=========================
+
+Kill server "a" => CTRL + c
+
+demo [direct: secondary] test> db.foo.find()
+[ { _id: 1, value: 'hello world' } ]
+demo [direct: primary] test> db.getMongo()
+mongodb://127.0.0.1:40000/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.8.0
+
+Quit NEW PRIMARY Shell
+====================
+CTRL + c
+C:\>
+
+To restart OLD PRIMARY
+=========================
+C:\>md \MyData\db1
+
+C:\>cd MyData
+
+C:\MyData>start "a" mongod --dbpath ./db1 --port 30000 --replSet "demo"
+
+Connect back into the Secondary server
+=============================================
+mongosh --port 40000
+
+Prompt changes to secondary
+==============================
+demo [direct: secondary] test>
+
+Status of REPLICA Set
+=========================
+rs.status()
+***********************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
