@@ -1,0 +1,180 @@
+---
+openapi: 3.0.0
+info:
+  title: Customer API v.2
+  description: This is the Customer API. It provides RESTful operations for Customer data.
+  contact:
+    name: Stephen Samuels
+    url: http://www.globomantics.com
+    email: ssam@globomantics.com
+  license:
+    name: Apache '2.0'
+    url: http://apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0-oas3
+servers:
+- url: https://api.globalmantics.com/crm/v1
+  description: Internal Production.
+- url: https://staging.globalmantics.com/crm/v1
+  description: Internal Staging.
+- url: https://development.globalmantics.com/crm/v1
+  description: Internal Devlopement.
+- url: https://{customerId}.globalmantics.com/crm/{version}
+  description: Customer Production
+  variables:
+    customerId:
+      description: The Customer Id for subdomain
+      default: demo
+    version:
+      default: v1
+      enum:
+      - v1
+      - v2
+      - v3-beta
+security:
+- BasicAuth: []
+paths:
+  /customer:
+    get:
+      summary: reads a customer's data
+      description: This operation provides a view of the customers data in JSON. The operation uses the customer id to identify the customer  in a query string.
+      operationId: getCustomer
+      parameters:
+      - name: customerId
+        in: query
+        description: pass a customer id to get customer data.
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: search results matching criteria.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        "404":
+          description: employee with this id does not exist.
+    post:
+      summary: adds a new customer
+      description: Add a new customer to the system
+      operationId: addCustomer
+      requestBody:
+        description: The new customer data in JSOn format
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            text/plain:
+              schema:
+                type: integer
+        "405":
+          description: Invalid input
+  /customer/{customerId}:
+    put:
+      summary: update  an existing customer
+      description: Updates an existing customer with new data
+      operationId: updateCustomer
+      parameters:
+      - name: customerId
+        in: path
+        description: The Id of the customer to update.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        description: The updated customer data in JSON format
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+        required: true
+      responses:
+        "200":
+          description: Success.
+        "404":
+          description: Customer Not Found.
+        "500":
+          description: Internal Server Error.
+    delete:
+      summary: Delete an existing customer
+      description: Deletes an existing customer in the system.
+      operationId: deleteCustomer
+      parameters:
+      - name: customerId
+        in: path
+        description: The Id of the customer to update.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: The customer was deleted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        "404":
+          description: Customer Not found.
+        "500":
+          description: Internal Server Error.
+      security:
+      - BasicAuth: []
+components:
+  schemas:
+    Customer:
+      type: object
+      properties:
+        customerId:
+          type: integer
+        accountValue:
+          type: number
+        customerName:
+          type: string
+        active:
+          type: boolean
+        address:
+          $ref: '#/components/schemas/Customer_address'
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Customer_contacts'
+    Customer_address:
+      type: object
+      properties:
+        name:
+          type: string
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+    Customer_contacts:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

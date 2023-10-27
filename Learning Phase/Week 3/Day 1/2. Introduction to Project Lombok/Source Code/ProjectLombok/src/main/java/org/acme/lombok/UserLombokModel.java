@@ -10,12 +10,13 @@ import lombok.*;
  */
 
 //@Data
-    @Getter
-    @Setter
-    @EqualsAndHashCode
+@Getter
+@Setter
+@EqualsAndHashCode
 //    @NoArgsConstructor
-    @RequiredArgsConstructor
-    @ToString
+//    @RequiredArgsConstructor
+//@AllArgsConstructor
+@ToString
 public class UserLombokModel {
     private long id;
     private String firstName;

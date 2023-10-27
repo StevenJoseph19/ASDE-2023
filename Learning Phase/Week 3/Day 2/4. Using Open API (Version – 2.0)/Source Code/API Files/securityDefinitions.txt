@@ -1,0 +1,11 @@
+ ApiKeyAuth:
+    type: apiKey
+    in: header
+    name: X-API-Key
+  OAuth2:
+    type: oauth2
+    flow: accessCode
+    authorizationUrl: https://example.com/oauth/authorize
+    scopes:
+      read: Grants read access
+      write: Grants write access

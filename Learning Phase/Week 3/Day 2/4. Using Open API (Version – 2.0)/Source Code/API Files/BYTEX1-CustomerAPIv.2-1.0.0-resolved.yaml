@@ -1,0 +1,156 @@
+---
+swagger: "2.0"
+info:
+  description: This is the Customer API. It provides RESTful operations for Customer data.
+  version: 1.0.0
+  title: Customer API v.2
+  contact:
+    name: Stephen Samuels
+    url: http://www.globomantics.com
+    email: ssam@globomantics.com
+  license:
+    name: Apache '2.0'
+    url: http://apache.org/licenses/LICENSE-2.0.html
+host: api.globalmantics.com
+basePath: /crm/v1
+schemes:
+- http
+- https
+security:
+- BasicAuth: []
+paths:
+  /customer:
+    get:
+      summary: reads a customer's data
+      description: This operation provides a view of the customers data in JSON. The operation uses the customer id to identify the customer in a query string.
+      operationId: getCustomer
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: customerId
+        in: query
+        description: pass a customer id to get customer data.
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: search results matching criteria.
+          schema:
+            $ref: '#/definitions/Customer'
+        "404":
+          description: employee with this id does not exist.
+    post:
+      summary: adds a new customer
+      description: Add a new customer to the system
+      operationId: addCustomer
+      consumes:
+      - application/json
+      produces:
+      - text/plain
+      parameters:
+      - in: body
+        name: body
+        description: The new customer data in JSOn format
+        required: true
+        schema:
+          $ref: '#/definitions/Customer'
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            type: integer
+        "405":
+          description: Invalid input
+  /customer/{customerId}:
+    put:
+      summary: update  an existing customer
+      description: Updates an existing customer with new data
+      operationId: updateCustomer
+      consumes:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: The updated customer data in JSON format
+        required: true
+        schema:
+          $ref: '#/definitions/Customer'
+      - name: customerId
+        in: path
+        description: The Id of the customer to update.
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Success.
+        "404":
+          description: Customer Not Found.
+        "500":
+          description: Internal Server Error.
+    delete:
+      summary: Delete an existing customer
+      description: Deletes an existing customer in the system.
+      operationId: deleteCustomer
+      produces:
+      - application/json
+      parameters:
+      - name: customerId
+        in: path
+        description: The Id of the customer to update.
+        required: true
+        type: integer
+      security:
+      - BasicAuth: []
+      responses:
+        "200":
+          description: The customer was deleted.
+          schema:
+            $ref: '#/definitions/Customer'
+        "404":
+          description: Customer Not found.
+        "500":
+          description: Internal Server Error.
+securityDefinitions:
+  BasicAuth:
+    type: basic
+definitions:
+  Customer:
+    type: object
+    properties:
+      customerId:
+        type: integer
+      accountValue:
+        type: number
+      customerName:
+        type: string
+      active:
+        type: boolean
+      address:
+        $ref: '#/definitions/Customer_address'
+      contacts:
+        type: array
+        items:
+          $ref: '#/definitions/Customer_contacts'
+  Customer_address:
+    type: object
+    properties:
+      name:
+        type: string
+      street:
+        type: string
+      city:
+        type: string
+      state:
+        type: string
+      zip:
+        type: string
+  Customer_contacts:
+    type: object
+    properties:
+      name:
+        type: string
+      email:
+        type: string
+      phone:
+        type: string
