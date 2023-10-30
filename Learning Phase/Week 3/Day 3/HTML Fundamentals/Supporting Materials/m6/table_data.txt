@@ -1,0 +1,27 @@
+	    	  Drink
+            	  Serving Size
+                  Calories
+                  Fat (g)
+                  Protein (g)
+                  Sugar (g)
+                  Fiber (g)
+             
+                      Hot Cocoa
+               	     8 oz
+                     250
+                     5
+                     2
+                     25
+                     0
+        
+                   Mocha
+                      8 oz
+                       250
+                       5
+                       2
+                       25
+                       0
+            
+                   Max
+                   
+                  250
