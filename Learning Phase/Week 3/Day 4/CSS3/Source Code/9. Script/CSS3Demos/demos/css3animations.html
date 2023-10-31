@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Animations in CSS3</title>
+    <style>
+      /* styles */
+      .box {
+        width: 100px;
+        height: 100px;
+        background: #dddddd;
+        margin: 25px;
+      }
+      @-webkit-keyframes blushing {
+        from {
+          background: #dddddd;
+        }
+        to {
+          background: #ff9999;
+        }
+      }
+      #div1 {
+        -webkit-animation: blushing 5s;
+      }
+
+      @-webkit-keyframes colorMe {
+        /* from */
+        0% {
+          background: red;
+        }
+        25% {
+          background: yellow;
+        }
+        50% {
+          background: blue;
+        }
+        /* to */
+        100% {
+          background: green;
+        }
+      }
+      #div2 {
+        -webkit-animation: colorMe 6s;
+      }
+
+      @-webkit-keyframes alterMe {
+        /* from */
+        0% {
+          background: red;
+        }
+        25% {
+          background: yellow;
+          box-shadow: 0 0 4px 2px red;
+        }
+        50% {
+          background: blue;
+          box-shadow: 0 0 8px 4px orange;
+        }
+        /* to */
+        100% {
+          background: green;
+          box-shadow: 0 0 16px 6px yellow;
+        }
+      }
+      #div3 {
+        -webkit-animation: alterMe 10s;
+      }
+
+      @-webkit-keyframes shockMe {
+        /* from */
+        0% {
+          background: red;
+        }
+        25% {
+          background: yellow;
+          box-shadow: 0 0 4px 2px red;
+          -webkit-transform: scale(1.1) rotate(4deg) translate(1em);
+        }
+        50% {
+          background: blue;
+          box-shadow: 0 0 8px 4px orange;
+          opacity: 0.25;
+          -webkit-transform: scale(1.5) rotate(15deg) translate(0.5em);
+        }
+        /* to */
+        100% {
+          background: green;
+          box-shadow: 0 0 16px 6px yellow;
+          -webkit-transform: scale(0.05) rotate(0deg) translate(0em);
+        }
+      }
+      #div4 {
+        -webkit-animation: shockMe 12s infinite alternate;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="div1" class="box"></div>
+    <div id="div2" class="box"></div>
+    <div id="div3" class="box"></div>
+    <div id="div4" class="box"></div>
+  </body>
+</html>
