@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.wildbeancoffee.friends.SystemTests
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.993 s <<< FAILURE! - in com.wildbeancoffee.friends.SystemTests
+testErrorHandlingReturnsBadRequest  Time elapsed: 0.002 s  <<< FAILURE!
+java.lang.AssertionError: expected:<400 BAD_REQUEST> but was:<404 NOT_FOUND>
+	at com.wildbeancoffee.friends.SystemTests.testErrorHandlingReturnsBadRequest(SystemTests.java:41)
+
