@@ -10,7 +10,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.mycompany</groupId>
-    <artifactId>conference-data-jpa-1</artifactId>
+    <artifactId>conference-data-jpa-2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>conference</name>
