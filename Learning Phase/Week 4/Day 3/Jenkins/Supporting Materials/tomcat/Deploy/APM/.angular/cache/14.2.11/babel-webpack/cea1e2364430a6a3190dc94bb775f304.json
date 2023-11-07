@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class NumberValidators {\n  static range(min, max) {\n    return c => {\n      if (c.value && (isNaN(c.value) || c.value < min || c.value > max)) {\n        return {\n          range: true\n        };\n      }\n\n      return null;\n    };\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}
