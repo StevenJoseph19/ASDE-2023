@@ -1,0 +1,17 @@
+<html>
+  <head></head>
+  <body onclick="console.log('body handler called.');">
+    <article
+      id="ancestor"
+      onclick="console.log('article handler called.'); event.stopPropagation()"
+    >
+      article element
+
+      <div id="parent" onclick="console.log('div handler called.')">
+        div element
+
+        <p id="child" onclick="console.log('p handler called.')">p element</p>
+      </div>
+    </article>
+  </body>
+</html>

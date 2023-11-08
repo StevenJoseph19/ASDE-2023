@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <title>Nested loops</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      var str = "@";
+      for (var row = 0; row < 6; row++) {
+        for (var col = 0; col < row; col++) {
+          document.write(str);
+        }
+        document.write("<br />");
+      }
+    </script>
+  </body>
+</html>
+
+<!-- <script type="text/javascript"> 
+    1 outerLoop: for ( var row = 0; row < 10; row++){
+    2 for ( var col=0; col <= row; col++){ 
+    document.write("row "+ row +"|column " + col, "<br />");
+    3 if(col==3){ 
+    document.write("Breaking out of outer loop at column
+    4 " + col +"<br />");
+    5 break outerLoop; 
+    } }
+    6 document.write("************<br />"); 
+    7 } // end outer loop block 
+    </script> -->

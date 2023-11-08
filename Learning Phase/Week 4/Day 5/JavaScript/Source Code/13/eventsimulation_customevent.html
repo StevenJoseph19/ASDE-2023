@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>How to simulate a click with JavaScript ?</title>
+  </head>
+
+  <body>
+    <h1 style="color: green">Event Simulation</h1>
+
+    <b> How to simulate a click with JavaScript ? </b>
+
+    <p>
+      The button was clicked
+      <span class="total-clicks"></span>
+      times
+    </p>
+
+    <button id="btn1" onclick="addClick()">Click Me!</button>
+
+    <script type="text/javascript">
+      let clicks = 0;
+
+      function addClick() {
+        clicks = clicks + 1;
+        document.querySelector(".total-clicks").textContent = clicks;
+      }
+
+      // Simulate click function
+      function clickButton() {
+        click_event = new CustomEvent("click");
+        btn_element = document.querySelector("#btn1");
+        btn_element.dispatchEvent(click_event);
+      }
+
+      // Simulate a click every second
+      setInterval(clickButton, 1000);
+    </script>
+  </body>
+</html>

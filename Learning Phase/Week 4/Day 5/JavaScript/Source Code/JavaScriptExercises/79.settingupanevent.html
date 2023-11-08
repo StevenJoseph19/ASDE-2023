@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>An event</title>
+    <script>
+        function refresh() {
+            alert("onunload event attribute called");
+        }
+    </script>
+  </head>
+  <body bgcolor="magenta" onunload="refresh()">
+    <center>
+      <form>
+        <input
+          type="button"
+          value="Click here to be alerted"
+          onClick='alert("Watch out! An asteroid is approaching earth!")'
+        />
+      </form>
+    </center>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+<br />
+          <button type="button" id="myBtn" onclick="disableButton()">
+
+        <script>
+          function myFunction() {
+            var x = document.getElementById("myBtn");
+            x.disabled = true;
+          }
+        </script>

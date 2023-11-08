@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript change Event for Checkboxes</title>
+  </head>
+  <body>
+    <label for="status">Web Technology:</label>
+    <input type="checkbox" id="html" /> HTML
+    <input type="checkbox" id="css" /> CSS
+    <input type="checkbox" id="js" /> JavaScript
+    <p id="result"></p>
+
+    <script>
+      let result = document.querySelector("#result");
+
+      document.body.addEventListener("change", function (e) {
+        let target = e.target;
+        let message;
+
+        switch (target.id) {
+          case "html":
+            message = "The HTML checkbox changed";
+            break;
+          case "css":
+            message = "The CSS checkbox changed";
+            break;
+          case "js":
+            message = "The JavaScript checkbox changed";
+            break;
+        }
+        result.textContent = message;
+      });
+    </script>
+  </body>
+</html>

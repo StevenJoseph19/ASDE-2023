@@ -1,0 +1,21 @@
+<br />
+        <select id="mySelect" size="4">
+          <option>Apple</option>
+          <option>Pear</option>
+          <option>Banana</option>
+          <option>Orange</option>
+        </select>
+        <br />
+        <p>
+          Click the button to get the number of option elements found in a
+          drop-down list.
+        </p>
+
+        <button onclick="myFunction()">Try it</button>
+
+        <script>
+          function myFunction() {
+            var z = document.getElementById("mySelect").length;
+            document.getElementById("demo").innerHTML = z;
+          }
+        </script>

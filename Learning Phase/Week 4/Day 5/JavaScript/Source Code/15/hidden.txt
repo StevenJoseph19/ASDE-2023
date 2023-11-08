@@ -1,0 +1,2 @@
+   <br />
+        <input type="hidden" id="myInput" value="secret" />

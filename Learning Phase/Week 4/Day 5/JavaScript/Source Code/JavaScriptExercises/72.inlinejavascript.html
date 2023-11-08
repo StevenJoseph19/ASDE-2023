@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Inline JavaScript</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+  </head>
+  <body id="bdy">
+    <div class="container">
+      <h1 style="text-align: center; color: green">GeeksforGeeks</h1>
+      <form>
+        <div class="form-group">
+          <label for="">Enter Your Name:</label>
+          <input
+            id="name"
+            class="form-control"
+            type="text"
+            placeholder="Input Your Name Here"
+          />
+        </div>
+        <div class="form-group">
+          <button
+            id="btn-alert"
+            class="btn btn-success btn-lg float-right"
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+    <script>
+      var user_name = document.getElementById("name");
+      document
+        .getElementById("btn-alert")
+        .addEventListener("click", function () {
+          var value = user_name.value.trim();
+          if (!value) alert("Name Cannot be empty!");
+          else alert("Hello, " + value + "!\nGreetings.");
+        });
+      window.onload = function () {
+        document.getElementById("bdy").style.backgroundColor = "lightgreen";
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript change Event for Radio Buttons</title>
+  </head>
+  <body>
+    <span>Status:</span>
+    <input type="radio" id="pending" name="status" />
+    <label for="pending">Pending</label>
+    <input type="radio" id="resolved" name="status" />
+    <label for="resolved">Resolved</label>
+    <input type="radio" id="rejected" name="status" />
+    <label for="rejected">Rejected</label>
+    <p id="result"></p>
+
+    <script>
+      let result = document.querySelector("#result");
+      document.body.addEventListener("change", function (e) {
+        let target = e.target;
+        let message;
+        switch (target.id) {
+          case "pending":
+            message = "The Pending radio button changed";
+            break;
+          case "resolved":
+            message = "The Resolved radio button changed";
+            break;
+          case "rejected":
+            message = "The Rejected radio button changed";
+            break;
+        }
+        result.textContent = message;
+      });
+    </script>
+  </body>
+</html>

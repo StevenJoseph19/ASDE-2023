@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>Using the const Keyword</title>
+    <script type="text/javascript">
+      const NOON = 12;
+      const FREEZING = 32; // Can't change
+    </script>
+  </head>
+  <body bgcolor="silver">
+    <big>
+      <script type="text/javascript">
+        document.write("Fahrenheit temp is " + FREEZING + ".<br />");
+        FREEZING = 32 + 10;
+        NOON = NOON + " noon";
+        document.write("Make it warmer " + FREEZING + ".<br />");
+        document.write("See you at ", NOON, ".<br />");
+      </script>
+    </big>
+  </body>
+</html>

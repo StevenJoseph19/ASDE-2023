@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript change Event for Select element</title>
+  </head>
+  <body>
+    <select id="lang">
+      <option value="">Select a language</option>
+      <option value="JavaScript">JavaScript</option>
+      <option value="TypeScript">TypeScript</option>
+      <option value="PHP">PHP</option>
+      <option value="Python">Python</option>
+      <option value="Java">Java</option>
+    </select>
+    <p id="result"></p>
+    <script>
+      let select = document.querySelector("#lang");
+      let result = document.querySelector("#result");
+      select.addEventListener("change", function () {
+        result.textContent = this.value;
+      });
+    </script>
+  </body>
+</html>

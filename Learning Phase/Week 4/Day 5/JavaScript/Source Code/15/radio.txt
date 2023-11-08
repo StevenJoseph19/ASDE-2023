@@ -1,0 +1,13 @@
+  <br />
+        Radio Button: <input type="radio" id="myRadio" />
+
+        <p>Click the "Try it" button to check the radio button.</p>
+
+        <button onclick="checkTheRadio()">Try it</button>
+
+        <script>
+          function checkTheRadio() {
+            var x = document.getElementById("myRadio");
+            x.checked = true;
+          }
+        </script>

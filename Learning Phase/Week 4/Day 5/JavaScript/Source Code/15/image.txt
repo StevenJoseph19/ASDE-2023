@@ -1,0 +1,9 @@
+ <br />
+        <input
+          type="image"
+          id="image"
+          alt="webpack"
+          src="images/webpack.png"
+          width="48"
+          height="48"
+        />

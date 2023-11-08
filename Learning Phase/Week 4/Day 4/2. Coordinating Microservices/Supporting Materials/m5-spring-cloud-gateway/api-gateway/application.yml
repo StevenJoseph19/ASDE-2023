@@ -1,0 +1,30 @@
+server:
+  port: 8080
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: true
+spring:
+  application:
+    name: toll-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: toll-servicev1
+          uri: lb://tollrate-service
+          predicates:
+            - Path=/v1/tollrate/{stationid}
+          filters:
+            - SetPath=/tollrate/{stationid}
+            - AddResponseHeader=X-Expiring-Service, please use v2
+        - id: toll-servicev2
+          uri: lb://tollrate-service
+          predicates:
+            - Path=/v2/tollrate/{stationid}
+          filters:
+            - SetPath=/tollratev2/{stationid}

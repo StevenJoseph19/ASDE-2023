@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>Function Scope</title>
+    <script type="text/javascript">
+      var name = "William"; // Global variable
+      var hometown = "Chico";
+      function greetme() {
+        var name = "Daniel"; // Local variable
+        var hometown = "Husingen";
+        alert(
+          "In function the name is " + name + " and hometown is " + hometown
+        );
+      }
+    </script>
+  </head>
+  <body>
+    <script type="text/javascript">
+      greetme(); // Function call
+      alert(
+        "Out of function, name is " + name + " and hometown is " + hometown
+      );
+    </script>
+  </body>
+</html>

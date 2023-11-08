@@ -1,0 +1,14 @@
+ <br />
+
+        Checkbox: <input type="checkbox" id="myCheck" />
+
+        <p>Click the "Try it" button to check the checkbox.</p>
+
+        <button onclick="checkTheBox()">Try it</button>
+
+        <script>
+          function checkTheBox() {
+            var x = document.getElementById("myCheck");
+            x.checked = true;
+          }
+        </script>

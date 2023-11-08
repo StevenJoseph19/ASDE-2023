@@ -1,0 +1,40 @@
+<!-- The src attribute is used when the JavaScript code is in an external file, the file name 
+ending with a .js extension. The src attribute is assigned the name of the file, which can 
+be prefixed with its location (e.g., a directory tree or URL). 
+<script type="text/javascript" 
+src="sample.js">
+</script>
+<script type="text/javascript" 
+src="directory/sample.js">
+</script>
+<script type="text/javascript" 
+src="http://hostname/sample.js">
+</script>-->
+<html> 
+<head><title>Printing Output</title></head> 
+<body bgcolor="yellow" text="blue">
+<big> 
+<b>Comparing the <em>document.write</em> and
+<em>document.writeln</em> methods</b><br /> 
+<script type="text/javascript">
+document.write("One, "); // No newline 
+document.writeln("Two, ");
+document.write("Blast off....<br />"); // break tag 
+document.write("The browser you are using is " + 
+navigator.userAgent + "<br />");
+</script> 
+<pre>
+<script type="text/javaScript"> 
+/*Lines are broken due to size of this page. If you cut
+and paste these programs into an editor, make sure 
+strings start and end with qutoes!!!*/
+document.writeln("With the <em>HTML &lt;pre&gt; </em> tags, ");
+document.writeln("the <em>writeln</em> method produces a newline.");
+document.writeln("Slam"); 
+document.writeln("Bang"); 
+document.writeln("Dunk!");
+</script> 
+ </pre>
+</big> 
+</body>
+</html>

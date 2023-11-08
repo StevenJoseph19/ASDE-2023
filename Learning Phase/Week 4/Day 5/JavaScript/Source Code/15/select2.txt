@@ -1,0 +1,19 @@
+ <br />
+        <select>
+          <option id="myOption" value="volvocar">Volvo</option>
+          <option value="saabcar">Saab</option>
+        </select>
+
+        <p>
+          Click the button to get the text of the Volvo option in the drop-down
+          list.
+        </p>
+
+        <button onclick="seeText()">Try it</button>
+
+        <script>
+          function seeText() {
+            var x = document.getElementById("myOption").text;
+            document.getElementById("demo").innerHTML = x;
+          }
+        </script>
