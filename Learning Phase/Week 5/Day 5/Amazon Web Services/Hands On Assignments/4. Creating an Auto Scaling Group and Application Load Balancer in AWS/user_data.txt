@@ -1,0 +1,10 @@
+#!/bin/bash
+yum update -y
+amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2
+yum install -y httpd
+yum install -y wget
+cd /var/www/html
+wget  https://raw.githubusercontent.com/StevenJoseph19/Cloud-Computing/master/Day%203/Assignment/index.html
+wget https://raw.githubusercontent.com/StevenJoseph19/Cloud-Computing/master/Day%203/Assignment/acg.jpg
+service httpd start
+

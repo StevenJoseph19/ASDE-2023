@@ -1,0 +1,9 @@
+## Use the following commands to install the stress application:
+
+sudo amazon-linux-extras install epel -y
+sudo yum install -y stress
+
+## Use the following command to stress the EC2 instance:
+stress --cpu 2 --timeout 300
+
+
