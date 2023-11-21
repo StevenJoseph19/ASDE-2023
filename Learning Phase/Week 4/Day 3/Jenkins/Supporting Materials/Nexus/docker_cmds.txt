@@ -1,0 +1,25 @@
+Installing Nexus:
+====================
+
+docker pull sonatype/nexus3
+
+Run sonatype/nexus on the default port 8081
+===========================================
+
+docker run -d --name nexus_repo -p 8081:8081 sonatype/nexus3
+
+Nexus logs
+====================
+
+$ docker logs nexus_repo -f 
+
+Open http://localhost:8081. Find the Sign In option.
+=====================================================
+
+The default username is admin
+
+Retrieve the password
+==========================================
+
+docker exec -i nexus_repo cat /nexus-data/admin.password
+

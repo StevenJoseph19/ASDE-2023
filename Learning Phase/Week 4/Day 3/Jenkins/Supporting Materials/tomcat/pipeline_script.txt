@@ -1,0 +1,16 @@
+// Make sure to replace frontend with your project name
+node {
+    stage('Checkout') {
+        bat "xcopy /E /exclude:D:\\Test\\Coforge-10thJuly\\Deploy\\APM\\ignore.txt D:\\Test\\Coforge-10thJuly\\Deploy\\APM /Y"
+    }
+    stage ('Install dependency') {
+        bat 'npm install --legacy-peer-deps'
+    } 
+   
+    stage('Make Prod Build') {
+        bat 'npx ng build --base-href=/APM/ && cd dist/APM && jar -cvf APM.war *'
+    }
+    stage ('Deploy on this Server') {
+        deploy adapters: [tomcat9(credentialsId: 'tomcat_creds', path: '', url: 'http://localhost:8081')], contextPath: null, war: '**/*.war'
+    }
+}
