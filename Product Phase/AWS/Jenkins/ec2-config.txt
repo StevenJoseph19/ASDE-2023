@@ -1,0 +1,45 @@
+#Perform a quick update on your instance:
+sudo yum update -y
+ 
+#Install git in your EC2 instance
+sudo yum install git -y
+ 
+#Check git version
+git version
+
+To Install Apache Mavenon your EC2 instance
+
+Connect to your Amazon EC2 instance with an SSH client.
+
+Install Apache Maven on your EC2 instance. First, enter the following to add a repository with a Maven package.
+sudo wget https://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+
+Enter the following to set the version number for the packages.
+
+sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+
+Then you can use yum to install Maven.
+
+sudo yum install -y apache-maven
+
+
+Setting up JAVA environment variable on Amazon Linux – EC2
+
+
+sudo su
+
+cat ~/.bashrc
+
+vi ~/.bashrc
+
+export JAVA_HOME="/usr/lib/jvm/java-17-amazon-corretto.x86_64" /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.332.b09-1.amzn2.0.2.x86_64/jre/bin/java
+PATH=$JAVA_HOME/bin:$PATH
+
+source  ~/.bashrc
+
+$ echo $JAVA_HOME
+$ echo $PATH
+
+====================================================================================
+sudo yum install java-1.8.0
+http://ec2-3-91-208-181.compute-1.amazonaws.com:8080/job/MavenPipeline/

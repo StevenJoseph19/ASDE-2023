@@ -1,0 +1,35 @@
+openVPN Server
+===============================
+Initial Configuration Complete!
+
+You can now continue configuring OpenVPN Access Server by
+directing your Web browser to this URL:
+
+https://100.24.70.70:943/admin
+
+During normal operation, OpenVPN AS can be accessed via these URLs:
+Admin  UI: https://100.24.70.70:943/admin
+Client UI: https://100.24.70.70:943/
+To login please use the "openvpn" account with  the password you specified during the setup.
+
+
+
+=======================================================================================================
+
+openVPN Client
+===============================
+which amazon-linux-extras/usr/bin/amazon-linux-extras
+sudo amazon-linux-extras install epel
+sudo yum install openvpn
+
+scp -i prod-keys.pem profile-10.ovpn ec2-user@54.162.5.36:/home/ec2-user
+
+netstat -anr
+
+sudo route add -host 54.162.5.36 gw   172.31.32.1
+
+sudo route add -host 182.69.183.210 gw 172.31.32.1
+
+where the ip following host is your machine's public IP (you can get this by just typing "what's my ip" into Google on your own pc) and the ip following gw is the ec2 instance's gateway IP (seen on the first line, second column of the output of netstat -anr when you execute it on your AWS server).
+
+sudo openvpn --config profile-10.ovpn 
